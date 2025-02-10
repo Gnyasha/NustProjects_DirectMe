@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NUST Navigation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        /* Updated CSS with mobile-first approach */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #app-container {
+            display: flex;
+            height: 100vh;
+            position: relative;
+        }
+
+        #building-list {
+            width: 100%;
+            max-width: 300px;
+            background: #f5f5f5;
+            padding: 20px;
+            overflow-y: auto;
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        #map-container {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        #map {
+            height: 100%;
+        }
+
+        .building-card {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .nav-controls {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            background: #004a87;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #location-permission {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 2000;
+        }
+
+        #loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 2000;
+        }
+
+        @media (max-width: 768px) {
+            #building-list {
+                position: absolute;
+                max-width: none;
+                height: 60vh;
+                bottom: 0;
+                transform: translateY(100%);
+            }
+            
+            #building-list.active {
+                transform: translateY(0);
+            }
+            
+            .nav-controls button {
+                padding: 12px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="location-permission">
+        <h2>Welcome to NUST Navigator</h2>
+        <p>We need your location to provide directions</p>
+        <button onclick="requestLocation()">Enable Location</button>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            (If location doesn't work, check your browser permissions)
+        </p>
+    </div>
+
+    <div id="loading">Locating you...</div>
+
+    <div id="app-container">
+        <div id="building-list">
+            <h2>Select a Building</h2>
+            <div class="buildings-container"></div>
+        </div>
+        <div id="map-container">
+            <div class="nav-controls">
+                <button onclick="showBuildingList()">← Buildings</button>
+                <button onclick="clearRoute()">❌ Clear</button>
+            </div>
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
+
+    <script>
+        let map, routingControl, userLocation, userMarker;
+        
+        const buildings = [
+            { name: "Main Building", code: "MB", lat: -22.6115, lng: 17.0807 },
+            { name: "Library", code: "LIB", lat: -22.6112, lng: 17.0815 },
+            { name: "Engineering Block", code: "EB", lat: -22.6120, lng: 17.0820 },
+            { name: "Student Center", code: "SC", lat: -22.6108, lng: 17.0795 }
+        ];
+
+        function initMap() {
+            map = L.map('map').setView([-22.6115, 17.0807], 17);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        }
+
+        async function requestLocation() {
+            document.getElementById('loading').style.display = 'block';
+            
+            try {
+                const position = await new Promise((resolve, reject) => {
+                    navigator.geolocation.getCurrentPosition(resolve, reject, {
+                        enableHighAccuracy: true,
+                        timeout: 500000,
+                        maximumAge: 0
+                    });
+                });
+
+                userLocation = [position.coords.latitude, position.coords.longitude];
+                if(userMarker) map.removeLayer(userMarker);
+                userMarker = L.marker(userLocation).addTo(map)
+                    .bindPopup("Your Location").openPopup();
+                
+                map.setView(userLocation, 17);
+                document.getElementById('location-permission').style.display = 'none';
+                document.getElementById('building-list').classList.add('active');
+            } catch (error) {
+                alert(`Location Error: ${error.message}\nPlease enable location in your browser settings.`);
+                document.getElementById('location-permission').innerHTML += `
+                    <p style="color: #ff4444;">Location access denied. Please refresh and allow permissions.</p>
+                `;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function showBuildingList() {
+            document.getElementById('building-list').classList.add('active');
+            if(routingControl) routingControl.getPlan().setWaypoints([]);
+        }
+
+        function clearRoute() {
+            if(routingControl) {
+                routingControl.getPlan().setWaypoints([]);
+                map.setView(userLocation || [-22.6115, 17.0807], 17);
+            }
+        }
+
+        function showDirections(destination) {
+            if(!userLocation) {
+                alert('Please enable location services first');
+                return;
+            }
+
+            if(routingControl) map.removeControl(routingControl);
+            
+            routingControl = L.Routing.control({
+                waypoints: [
+                    L.latLng(userLocation),
+                    L.latLng(destination.lat, destination.lng)
+                ],
+                routeWhileDragging: true,
+                collapsible: true,
+                show: false,
+                lineOptions: {
+                    styles: [{color: '#004a87', opacity: 0.7, weight: 5}]
+                }
+            }).addTo(map);
+
+            document.getElementById('building-list').classList.remove('active');
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            const container = document.querySelector('.buildings-container');
+            buildings.forEach(building => {
+                const div = document.createElement('div');
+                div.className = 'building-card';
+                div.innerHTML = `<strong>${building.code}</strong><br>${building.name}`;
+                div.onclick = () => showDirections(building);
+                container.appendChild(div);
+            });
+
+            // Auto-hide building list on mobile after selection
+            if(window.innerWidth <= 768) {
+                document.getElementById('building-list').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
