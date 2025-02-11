@@ -155,13 +155,28 @@
         let map, routingControl, userLocation, userMarker;
         
         const buildings = [
-            { name: "Library", code: "LIB", lat: -22.564482, lng: 17.075388 },
-            { name: "A Building", code: "AB", lat: -22.565411, lng: 17.076852 },
-            { name: "A-Lecture Building", code: "ALB", lat: -22.565146, lng: 17.0776141 },
-            { name: "D4 Building", code: "D4B", lat: -22.565666, lng: 17.074567 },
-            { name: "D3 Building", code: "D3B", lat: -22.565153, lng: 17.074999 },
-            { name: "Health and Applied Sciences Building", code: "HASB", lat: -22.566246, lng: 17.073789 },
-            { name: "K Building", code: "KB", lat: -22.566664, lng: 17.075675 }
+            { name: "Elisabeth Haus [Office of the Vice-Chancellor]", code: "A1", lat: "-22.565879", lng: "17.077255" },
+            { name: "Administration Building", code: "A3", lat: "-22.566290", lng: "17.077421" },
+            { name: "Department: Examinations and Assessment Administration", code: "A5", lat: "-22.565478", lng: "17.076627" },
+            { name: "Department: Student Services", code: "A6", lat: "-22.566020", lng: "17.076608" },
+            { name: "Clinic", code: "A10", lat: "-22.565089", lng: "17.076581" },
+            { name: "Department of Technical, Vocational, Education and Training (TVET)", code: "A11", lat: "-22.564901", lng: "17.076823" },
+            { name: "Lecture Building", code: "A15", lat: "-22.565193", lng: "17.077619" },
+            { name: "Office Block", code: "A17", lat: "-22.565307", lng: "17.077067" },
+            { name: "Poly Heights [Staff Offices (Basement - 5th Floor / Staff Residence)]", code: "A18", lat: "-22.566221", lng: "17.077949" },
+            { name: "Library and Information Services", code: "D1", lat: "-22.564569", lng: "17.075350" },
+            { name: "School of Engineering", code: "D2", lat: "-22.564876", lng: "-22.564876" },
+            { name: "Auditoria Building", code: "D3", lat: "-22.564965", lng: "17.075042" },
+            { name: "Science and Technology Building", code: "D4", lat: "-22.565646", lng: "17.074489" },
+            { name: "Faculty of Health, Natural Resources and Applied Sciences", code: "E1", lat: "-22.566159", lng: "17.073728" },
+            { name: "Department of Civil Mining and Process Engineering", code: "E2", lat: "-22.565896", lng: "17.073196" },
+            { name: "Department of Architecture, Planning and Construction", code: "E3", lat: "-22.566020", lng: "17.073084" },
+            { name: "High-Tech Transfer Plaza (HTTPs)", code: "E4", lat: "-22.566295", lng: "17.072987" },
+            { name: "Hotel School", code: "F1", lat: "", lng: "" },
+            { name: "Pre-Fabricated Classrooms", code: "F2", lat: "-22.566228", lng: "17.072298" },
+            { name: "New Energy Efficient House", code: "F3", lat: "-22.566994", lng: "17.071756" },
+            { name: "Teaching and Learning Unit", code: "J1", lat: "-22.568381", lng: "17.070646" },
+            { name: "Centre for Excellence in Information Technology", code: "K1", lat: "-22.566672", lng: "17.075667" }
         ];
                 function initMap() {
             map = L.map('map').setView([-22.6115, 17.0807], 17);
