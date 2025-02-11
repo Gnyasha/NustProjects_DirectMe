@@ -155,13 +155,15 @@
         let map, routingControl, userLocation, userMarker;
         
         const buildings = [
-            { name: "Main Building", code: "MB", lat: -22.6115, lng: 17.0807 },
-            { name: "Library", code: "LIB", lat: -22.6112, lng: 17.0815 },
-            { name: "Engineering Block", code: "EB", lat: -22.6120, lng: 17.0820 },
-            { name: "Student Center", code: "SC", lat: -22.6108, lng: 17.0795 }
+            { name: "Library", code: "LIB", lat: -22.564482, lng: 17.075388 },
+            { name: "A Building", code: "AB", lat: -22.565411, lng: 17.076852 },
+            { name: "A-Lecture Building", code: "ALB", lat: -22.565146, lng: 17.0776141 },
+            { name: "D4 Building", code: "D4B", lat: -22.565666, lng: 17.074567 },
+            { name: "D3 Building", code: "D3B", lat: -22.565153, lng: 17.074999 },
+            { name: "Health and Applied Sciences Building", code: "HASB", lat: -22.566246, lng: 17.073789 },
+            { name: "K Building", code: "KB", lat: -22.566664, lng: 17.075675 }
         ];
-
-        function initMap() {
+                function initMap() {
             map = L.map('map').setView([-22.6115, 17.0807], 17);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         }
