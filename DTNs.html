@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COA</title>
+    <style>
+        /* Main styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Accordion header */
+        .accordion-header, .child-accordion-header {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+            .accordion-header:hover {
+                background-color: #0056b3;
+            }
+
+        /* Distinct color for child accordions */
+        .child-accordion-header {
+            background-color: #008000;
+        }
+
+            .child-accordion-header:hover {
+                background-color: #43e512;
+            }
+
+        /* Accordion content */
+        .accordion-content, .child-accordion-content {
+            display: none;
+            background-color: #f9f9f9;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Footer text style */
+        .footer-text {
+            padding: 15px 0;
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+        }
+
+        pre {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .arrow {
+            font-size: 16px;
+        }
+
+        @keyframes colorCycle {
+        0% { color: #ff5733; }   /* Orange */
+        25% { color: #33ff57; }  /* Green */
+        50% { color: #3357ff; }  /* Blue */
+        75% { color: #ff33a8; }  /* Pink */
+        100% { color: #ff5733; } /* Orange */
+    }
+
+    .animated-ascii {
+        animation: colorCycle 3s linear infinite;
+    }
+
+    .ascii-container {
+        font-family: monospace;
+        color: #333;
+    }
+
+    /* Wrap each box in a specific span for animation */
+    .box {
+        display: inline-block;
+        position: relative;
+        padding: 5px;
+        border: 2px solid transparent; /* Initially transparent */
+        margin: 0 10px;
+    }
+
+    /* Animation keyframes for circling effect */
+    @keyframes circleAnimation {
+        0% { border-color: #ff5733 transparent transparent transparent; }
+        25% { border-color: #33ff57 #33ff57 transparent transparent; }
+        50% { border-color: transparent #3357ff #3357ff transparent; }
+        75% { border-color: transparent transparent #ff33a8 #ff33a8; }
+        100% { border-color: #ff5733 transparent transparent transparent; }
+    }
+
+    /* Apply the circling animation */
+    .box.animate {
+        border-width: 2px;
+        border-style: solid;
+        animation: circleAnimation 2s linear infinite;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="accordion">
+  
+
+
+<!-- Chapter 1: Introduction to Computer Networks -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 1: Introduction to Computer Networks</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter introduces fundamental concepts of computer networks, their components, and how they enable modern digital communication.</p>
+
+        <div class="accordion">
+            <!-- Section 1: Basics of Computer Networks -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: Network Fundamentals</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Key Terminologies -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Key Terminologies</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++----------------------+
+| Networking          |
+| - Device Connection |
++----------------------+
+| Data Transmission   |
+| - Digital Movement  |
++----------------------+</pre>
+                            <p><strong>Computer Network:</strong> 2+ connected devices</p>
+                            <p><strong>Data:</strong> Digital information (text, images, video)</p>
+                            <p><em>Kids Explanation:</em> Like a digital playground where devices hold hands to share toys (data)!</p>
+                        </div>
+                    </div>
+
+                    <!-- Why Networks Matter -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Why Networks Matter</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+    <span class="box animate">+-----+</span>       <span class="box animate">+-----+</span>
+    | PC  |------|Server|
+    +-----+       +-----+</span>
+           <span class="animate">🡅</span>
+    <span class="box animate">+-----+</span>
+    |Printer|
+    +-----+</span>
+                                </pre>
+                            </div>
+                            <p><strong>Resource Sharing:</strong> Printers, files, applications</p>
+                            <p><strong>Communication:</strong> Email, video calls</p>
+                            <p><em>Tip:</em> Networks are like digital highways - more lanes (bandwidth) mean faster traffic!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Network Components -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: Network Components</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Devices -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Devices & Media</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++--------------+     +--------------+
+| End Devices  |-----| Core Devices |
+| (PC/Phone)   |  ⇅  | (Router/Switch)
++--------------+     +--------------+
+       <span class="animate">⬇</span>
++-----------------+
+| Communication   |
+| (Cables/Wi-Fi)  |
++-----------------+</pre>
+                            <p><strong>Edge Devices:</strong> User gadgets (PCs, phones)</p>
+                            <p><strong>Core Devices:</strong> Network traffic directors</p>
+                        </div>
+                    </div>
+
+                    <!-- Protocols -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Network Protocols</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">+--------+</span> HTTP
+<span class="box animate">+--------+</span> TCP/IP
+<span class="box animate">+--------+</span> DNS
+                                </pre>
+                            </div>
+                            <p><strong>HTTP:</strong> Web page delivery</p>
+                            <p><strong>TCP/IP:</strong> Data packaging standard</p>
+                            <p><em>Kids Explanation:</em> Protocols are like secret handshakes devices use to understand each other!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Internet Structure -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: The Internet</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Global Network -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Network of Networks</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++------------+       +------------+
+| Home Net   |-------| ISP        |
++------------+       +------------+
+       ⬇
++------------------------+
+| Global Internet Cloud  |
++------------------------+</pre>
+                            <p><strong>ISP:</strong> Internet Service Provider</p>
+                            <p><strong>IP Address:</strong> Digital home address for devices</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Network Architecture -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: Network Architectures</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Client-Server -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Client-Server Model</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++---------+  Request  +--------+
+| Client  | ---------> | Server |
+| (Browser| <--------- | (Web)  |
++---------+  Response +--------+</pre>
+                            <p><strong>Server:</strong> Always-on resource provider</p>
+                            <p><strong>Client:</strong> Makes requests (web browsers)</p>
+                        </div>
+                    </div>
+
+                    <!-- P2P -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Peer-to-Peer</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">+-----+</span> ⇄ <span class="box animate">+-----+</span>
+| PC1 |   | PC2 |
++-----+   +-----+
+   ↕        ↕
+<span class="box animate">+-----+</span>
+| PC3 |
++-----+</span>
+                                </pre>
+                            </div>
+                            <p><em>Kids Explanation:</em> Like classmates sharing pencils directly without teacher's desk!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Networks work like team sports - every device has a position and follows rules to score data goals!</em>
+        </div>
+    </div>
+</div>
+
+<!-- Chapter 2: Network Topologies & Infrastructure -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 2: Network Structures & Standards</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter explores network layouts, physical components, and communication frameworks that enable modern connectivity.</p>
+
+        <div class="accordion">
+            <!-- Section 1: Network Topologies -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: Network Topologies</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Bus Topology -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Bus Topology</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">[PC1]</span>---<span class="box animate">[PC2]</span>---<span class="box animate">[PC3]</span>
+│
+<span class="box animate">Backbone Cable</span>
+                                </pre>
+                            </div>
+                            <p><strong>Pros:</strong> Simple setup, low cost</p>
+                            <p><strong>Cons:</strong> Collision risks, single failure point</p>
+                            <p><em>Kids Explanation:</em> Like a classroom whisper chain - everyone hears everything!</p>
+                        </div>
+                    </div>
+
+                    <!-- Star Topology -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Star Topology</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
+      <span class="box animate">[Switch]</span>
+     ↗ ↑ ↖
+[PC1][PC2][PC3]
+                            </pre>
+                            <p><strong>Pros:</strong> Central management, fault isolation</p>
+                            <p><strong>Cons:</strong> Hub failure = network failure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Network Types -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: Network Types</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">📱</span> PAN (Personal)
+<span class="box animate">🏠</span> LAN (Home)
+<span class="box animate">🏙️</span> MAN (City)
+<span class="box animate">🌍</span> WAN (Global)
+                        </pre>
+                    </div>
+                    <p><strong>Key Differences:</strong></p>
+                    <pre>
++----------+----------------------+
+| PAN      | Bluetooth devices    |
+| LAN      | Office Wi-Fi network |
+| WAN      | Internet backbone    |
++----------+----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 3: Physical Structures -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: Cables & Hardware</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Cable Types -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Network Cables</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++--------------+-------------------+
+| Cat 6        | 🚀 10 Gbps speed  |
+| Fiber Optic  | 🌐 Long distances |
+| Coaxial      | 📺 Old TV systems |
++--------------+-------------------+
+                            </pre>
+                            <p><em>Kids Explanation:</em> Cables are like roads - some are fast highways (fiber), others are neighborhood streets (UTP)!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Logical Structures -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: OSI Model</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">Layer 7: Application</span>
+<span class="box animate">Layer 4: Transport</span>
+<span class="box animate">Layer 1: Physical</span>
+                        </pre>
+                    </div>
+                    <p><strong>Data Flow:</strong></p>
+                    <pre>
+Email -> Encrypted -> Packaged -> Sent as Bits
+(Application) (Presentation) (Transport) (Physical)
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 5: Network Standards -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 5: Protocols & Standards</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++------------+-----------------------+
+| IEEE 802.11| Wi-Fi Specifications  |
+| TCP/IP     | Internet Foundation   |
+| HTTP       | Web Page Delivery     |
++------------+-----------------------+</pre>
+                    <p><em>Kids Explanation:</em> Standards are like traffic rules - they make sure all devices drive safely on the information highway!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Networks are like cities - topologies are street layouts, cables are roads, and protocols are traffic laws!</em>
+        </div>
+    </div>
+</div>
+
+<!-- Chapter 3: Network Protocols & Advanced Concepts -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 3: Communication Frameworks</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter dives into communication protocols, data packaging, and advanced network infrastructure management.</p>
+
+        <div class="accordion">
+            <!-- Section 1: OSI Model Deep Dive -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: OSI Model Layers</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Transport Layer -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Layer 4: Transport Layer</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">📦 TCP</span>  vs  <span class="box animate">📮 UDP</span>
+│ Reliable       │ Fast
+│ Error-checking │ No guarantees
+                                </pre>
+                            </div>
+                            <p><strong>TCP:</strong> Used for emails/file transfers</p>
+                            <p><strong>UDP:</strong> Used for live streaming/gaming</p>
+                            <p><em>Kids Explanation:</em> TCP is like registered mail, UDP is like shouting across a playground!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: TCP/IP Suite -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: TCP/IP in Action</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++-----------------+
+| HTTP  (Web)     |
+| DNS  (Address)  |
+| SMTP (Email)    |
++-----------------+
+      ▼
+<span class="box animate">Internet Layer</span>
+      ▼
+<span class="box animate">Physical Cables</span>
+                    </pre>
+                    <p><strong>Real-World Flow:</strong></p>
+                    <pre>
+1. Type "google.com" (Application)
+2. DNS converts to IP (Transport)
+3. Routers guide packets (Internet)
+4. Electricity/light carries data (Link)
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 3: Network Applications -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: Network Services</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">📧 Email</span>
+<span class="box animate">🛒 E-commerce</span>
+<span class="box animate">🎮 Online Gaming</span>
+<span class="box animate">🏠 IoT Devices</span>
+                        </pre>
+                    </div>
+                    <p><strong>Protocol Relationships:</strong></p>
+                    <pre>
++-------------+----------------+
+| Application | Protocol Used  |
++-------------+----------------+
+| Web Browsing| HTTP/HTTPS     |
+| File Transfer| FTP           |
+| Video Call  | RTP/UDP        |
++-------------+----------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 4: Advanced Protocols -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: Specialized Protocols</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Security Protocols -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Security & Management</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
+<span class="box animate">🔒 SSL/TLS</span> → Encrypted web traffic
+<span class="box animate">🛡️ SSH</span> → Secure server access
+<span class="box animate">📊 SNMP</span> → Network monitoring
+                            </pre>
+                            <p><em>Kids Explanation:</em> SSL is like a secret code between you and websites - only you two understand it!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Network Standards -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 5: Governing Standards</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">IEEE 802.3</span> → Ethernet
+<span class="box animate">IEEE 802.11</span> → Wi-Fi
+<span class="box animate">ITU-T</span> → Telecom Rules
+                        </pre>
+                    </div>
+                    <p><strong>Wi-Fi Generations:</strong></p>
+                    <pre>
++------+-------------+-------+
+| 802.11ax | Wi-Fi 6 | 2019  |
+| 802.11ac | Wi-Fi 5 | 2013  |
+| 802.11n  | Wi-Fi 4 | 2008  |
++------+-------------+-------+
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Protocols are the "language rules" of networking - devices must speak the same protocol to understand each other!</em>
+        </div>
+    </div>
+</div>
+
+
+<!-- Chapter 4: Application Layer & HTTP -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 4: Web Communication Fundamentals</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter explores how applications communicate over networks, focusing on web protocols and address resolution.</p>
+
+        <div class="accordion">
+            <!-- Section 1: Application Layer Basics -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: Address & Port System</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- IP-Port Relationship -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>IP + Port = Digital Doorway</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">🏢 IP: 192.168.1.5</span>
+│
+<span class="box animate">🚪 Port 80 (HTTP)</span>
+<span class="box animate">🚪 Port 443 (HTTPS)</span>
+                                </pre>
+                            </div>
+                            <p><strong>IP Address:</strong> Device's street address</p>
+                            <p><strong>Port:</strong> Specific service entrance</p>
+                            <p><em>Kids Explanation:</em> Like a hotel address (IP) with room numbers (ports) for different services!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: HTTP Protocol -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: HTTP Mechanics</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- Connection Types -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Connection Strategies</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++-----------------+-------------------+
+| Non-Persistent  | New connection    |
+|                 | per request       |
+| Persistent      | Reuse connection  |
++-----------------+-------------------+
+                            </pre>
+                            <p><strong>Real-World Analogy:</strong></p>
+                            <pre>
+Non-Persistent: Hang up after each call
+Persistent: Keep phone line open
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Web Communication Flow -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: Page Loading Process</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+1. <span class="box animate">🌐 Enter URL</span>
+2. <span class="box animate">🔍 DNS Lookup</span>
+3. <span class="box animate">🤝 TCP Handshake</span>
+4. <span class="box animate">📦 GET Request</span>
+5. <span class="box animate">📄 Receive HTML</span>
+                        </pre>
+                    </div>
+                    <p><strong>Key Protocols:</strong></p>
+                    <pre>
++------+-----------------------+
+| DNS  | Converts names to IPs |
+| HTTP | Fetches page content  |
+| TCP  | Reliable delivery     |
++------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 4: HTTP Methods & Statuses -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: Web Conversations</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- HTTP Methods -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>HTTP Verbs</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
+<span class="box animate">GET</span> → Read data
+<span class="box animate">POST</span> → Create data
+<span class="box animate">PUT</span> → Update data
+<span class="box animate">DELETE</span> → Remove data
+                            </pre>
+                            <p><em>Kids Explanation:</em> Like library actions - GET a book, POST a review, PUT it back, DELETE from shelf</p>
+                        </div>
+                    </div>
+
+                    <!-- Status Codes -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Server Responses</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++------+---------------------+
+| 200  | ✅ Success          |
+| 404  | ❌ Page Not Found   |
+| 500  | 🔥 Server Error    |
++------+---------------------+
+                            </pre>
+                            <p><strong>Pro Tip:</strong> 4xx errors are client mistakes, 5xx are server issues</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Security -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 5: Secure Communication</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">🔒 HTTPS</span> vs <span class="box animate">🚫 HTTP</span>
+│ Encrypted           │ Plain Text
+│ Port 443           │ Port 80
+                        </pre>
+                    </div>
+                    <p><strong>TLS Handshake Process:</strong></p>
+                    <pre>
+1. Client Hello
+2. Server Certificate
+3. Key Exchange
+4. Encrypted Session
+                    </pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Web communication is like sending sealed letters (HTTPS) instead of postcards (HTTP) for privacy!</em>
+        </div>
+    </div>
+</div>
+
+<!-- Chapter 5: Email Systems & Network Services -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 5: Digital Messaging & Data Transfer</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter explores email infrastructure, domain resolution, and file transfer protocols that power modern digital communication.</p>
+
+        <div class="accordion">
+            <!-- Section 1: Email Architecture -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: Email Ecosystem</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- SMTP Workflow -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Email Journey: Anna → Ben</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <div class="ascii-container">
+                                <pre>
+1. <span class="box animate">📧 Compose</span> → Anna's Outlook
+2. <span class="box animate">📤 Outgoing Server</span> (SMTP)
+3. <span class="box animate">🌐 DNS Lookup</span> (Port 53)
+4. <span class="box animate">📥 Ben's Server</span> (Port 25)
+5. <span class="box animate">📩 Mailbox</span> (IMAP/POP3)
+                                </pre>
+                            </div>
+                            <p><em>Kids Explanation:</em> Like sending a letter through post offices (servers) with special delivery rules!</p>
+                        </div>
+                    </div>
+
+                    <!-- POP3 vs IMAP -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Email Storage Strategies</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++----------------+-----------------------+
+| POP3 (Port 110)| 🎒 Take mail home     |
+| IMAP (Port 143)| 🏢 Keep mail at office |
++----------------+-----------------------+
+                            </pre>
+                            <p><strong>Secure Versions:</strong> POP3S (995), IMAPS (993)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: DNS System -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: Internet Phonebook</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- DNS Hierarchy -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>DNS Resolution Types</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
+<span class="box animate">🔍 Recursive Query</span>
+│ "Find this for me!"
+│ (Server does all work)
+
+<span class="box animate">🔄 Iterative Query</span>
+│ "Who knows this?"
+│ (Client follows referrals)
+                            </pre>
+                            <div class="ascii-container">
+                                <pre>
+          <span class="box animate">🌐 Root Server</span>
+            ↓
+<span class="box animate">🏛️ TLD Server (.na)</span>
+            ↓
+<span class="box animate">🏢 Authoritative Server</span>
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: FTP Protocol -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: File Transfer Basics</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <!-- FTP Overview -->
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>FTP Communication</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++-----------------+-------------------+
+| Port 21         | Control Channel   |
+| Port 20         | Data Channel      |
++-----------------+-------------------+
+                            </pre>
+                            <p><strong>Security Alert:</strong> Plain text transmission - Use SFTP/FTPS instead!</p>
+                            <div class="ascii-container">
+                                <pre>
+<span class="box animate">💻 Client</span> → <span class="box animate">📁 Server</span>
+│ LIST / DOWNLOAD / UPLOAD
+│ (No encryption ❌)
+                                </pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Protocol Port Map -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: Network Port Directory</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++----------+----------+---------------------+
+| Protocol | Port     | Usage               |
++----------+----------+---------------------+
+| SMTP     | 25       | Email Routing       |
+| DNS      | 53       | Name Resolution     |
+| IMAP     | 143/993  | Email Access        |
+| FTP      | 21       | File Transfers      |
+| SSH      | 22       | Secure Connections  |
++----------+----------+---------------------+
+                    </pre>
+                    <p><em>Pro Tip:</em> Odd ports = insecure, Even ports = secure (generally)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Email protocols are like postal workers - SMTP delivers mail, POP/IMAP collect it from your mailbox!</em>
+        </div>
+    </div>
+</div>
+
+<!-- Chapter 6: Network Command Line Toolkit -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 6: Network Diagnostics & Analysis</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <p><strong>Overview:</strong> This chapter compares essential network commands between Linux and Windows with real output examples and interpretations.</p>
+
+        <div class="accordion">
+            <!-- Section 1: Basic Connectivity -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 1: Connectivity Tests</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| Linux               | Windows               |
++---------------------+-----------------------+
+| <strong>ping -c 4 google.com</strong> | <strong>ping -n 4 google.com</strong> |
+| 64 bytes from...    | Reply from 142.251.33.14|
+| time=23ms TTL=117   | TTL=128                |
++---------------------+-----------------------+
+                    </pre>
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Key Output Elements</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <p><strong>TTL (Time to Live):</strong><br>
+                            Linux: Starts at 64<br>
+                            Windows: Starts at 128<br>
+                            Decreases by 1 at each router hop</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Path Analysis -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 2: Route Tracing</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>traceroute google.com</strong> | <strong>tracert google.com</strong>   |
+| 1  router1 (1ms)    | 1    <1ms  router1    |
+| 2  isp-gw (15ms)    | 2    15ms  isp-gw     |
++---------------------+-----------------------+
+                    </pre>
+                    <p><em>Pro Tip:</em> Windows uses ICMP, Linux often uses UDP by default</p>
+                </div>
+            </div>
+
+            <!-- Section 3: Interface Config -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 3: Interface Details</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>ifconfig</strong>            | <strong>ipconfig /all</strong>       |
+| eth0: 192.168.1.5   | IPv4 Address: 192.168.1.5|
+| RX packets 1500     | Subnet Mask: 255.255.255.0|
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 4: DNS Tools -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 4: DNS Resolution</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>dig google.com</strong>      | <strong>nslookup google.com</strong> |
+| ;; ANSWER SECTION:  | Non-authoritative answer:|
+| google.com. 300 IN A| Addresses: 142.251.33.14|
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 5: Network Stats -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 5: Connection Monitoring</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>netstat -tulpn</strong>     | <strong>netstat -ano</strong>        |
+| tcp 0 0 :443 LISTEN| TCP 0.0.0.0:443 LISTENING|
++---------------------+-----------------------+
+                    </pre>
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>Port State Legend</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <p><strong>LISTEN:</strong> Waiting for connections<br>
+                            <strong>ESTABLISHED:</strong> Active connection<br>
+                            <strong>TIME_WAIT:</strong> Recent connection closure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: Packet Analysis -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 6: Traffic Inspection</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>tcpdump -i eth0</strong>    | <strong>netsh trace start</strong>    |
+| 15:32:45.1 IP x→y   | Capture started       |
+| GET / HTTP/1.1      | Use Network Monitor   |
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 7: Routing Tables -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 7: Routing Management</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>route -n</strong>           | <strong>route print</strong>         |
+| 0.0.0.0 192.168.1.1| 0.0.0.0 ➔ 192.168.1.1 |
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 8: ARP Cache -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 8: Address Resolution</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>arp -a</strong>             | <strong>arp -a</strong>             |
+| ? (192.168.1.1)     | 192.168.1.1 00-aa-bb  |
+| at aa:bb:cc:dd:ee:ff| Interface: eth0       |
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 9: Bandwidth Tests -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 9: Speed Measurement</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>iperf3 -c server</strong>   | <strong>Test-NetConnection</strong> |
+| [ 5] 0.0-10.0 sec  | ComputerName: server  |
+| 1.2 Gbits/sec       | Latency: 23ms        |
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Section 10: Firewall -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Section 10: Firewall Control</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++---------------------+-----------------------+
+| <strong>ufw allow 22/tcp</strong>   | <strong>netsh advfirewall</strong>  |
+| Rules updated       | New rule added       |
++---------------------+-----------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Continue up to 15 commands -->
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Tip: Linux commands often provide more detailed technical info, while Windows commands focus on user-friendly outputs!</em>
+            <br>
+            <strong>Essential Network Commands:</strong>
+            <pre>
+1. ping         6. netstat        11. ss (Linux)
+2. traceroute   7. tcpdump       12. Test-Connection (PS)
+3. ifconfig     8. route         13. pathping
+4. dig          9. arp           14. nmap (Linux)
+5. nslookup    10. iperf3        15. netsh
+            </pre>
+        </div>
+    </div>
+</div>
+
+<!-- Chapter 7: Networking Masterclass -->
+<div class="accordion-item">
+    <div class="accordion-header">
+        <h3>Chapter 7: Core Networking Concepts</h3>
+        <span class="arrow">+</span>
+    </div>
+    <div class="accordion-content">
+        <div class="accordion">
+
+            <!-- OSI vs TCP/IP Models -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Network Models Comparison</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++----------------+-----------------+-------------------+
+| OSI Model      | TCP/IP Model    | Key Protocols     |
++----------------+-----------------+-------------------+
+| 7. Application | Application     | HTTP, FTP, SMTP   |
+| 6. Presentation|                 | SSL, TLS, JPEG    |
+| 5. Session     |                 | NetBIOS, RPC      |
+| 4. Transport   | Transport       | TCP, UDP          |
+| 3. Network     | Internet        | IP, ICMP          |
+| 2. Data Link   | Network Access  | Ethernet, Wi-Fi   |
+| 1. Physical    |                 | Cables, Hubs      |
++----------------+-----------------+-------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- DHCP Deep Dive -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>DHCP Operation (DORA Process)</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+1. <span class="box animate">📡 Discover</span> → Broadcast (UDP 67)
+2. <span class="box animate">📦 Offer</span>    → Server → Client (UDP 68)
+3. <span class="box animate">📨 Request</span>  → Client → Server
+4. <span class="box animate">✅ Ack</span>      → Final confirmation
+                        </pre>
+                    </div>
+                    <p><strong>Allocation Methods:</strong></p>
+                    <pre>
++---------------------+---------------------------+
+| Dynamic             | Temporary leases (common) |
+| Automatic           | Permanent auto-assignment |
+| Manual              | Reserved MAC-IP mapping   |
++---------------------+---------------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Subnetting Techniques -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Subnetting Mastery</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <p><strong>Basic Formula:</strong></p>
+                    <pre>
+Number of Subnets = 2^(network bits borrowed)
+Hosts per Subnet = 2^(host bits remaining) - 2
+                    </pre>
+                    
+                    <p><strong>CIDR Example:</strong></p>
+                    <pre>
+192.168.1.0/24 → 256 hosts
+/26 → 4 subnets (64 hosts each)
+Subnets: 192.168.1.0-63, 64-127, 128-191, 192-255
+                    </pre>
+                    
+                    <div class="accordion-item">
+                        <div class="sub-child-accordion-header">
+                            <h5>VLSM Table</h5>
+                            <span class="arrow">+</span>
+                        </div>
+                        <div class="sub-child-accordion-content">
+                            <pre>
++---------------+---------+-------------------+
+| Department    | Hosts   | Subnet Mask       |
++---------------+---------+-------------------+
+| HR            | 50      | 255.255.255.192   |
+| IT            | 30      | 255.255.255.224   |
+| Admin         | 10      | 255.255.255.240   |
++---------------+---------+-------------------+
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Essential Protocols -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Key Protocols & Functions</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <pre>
++----------+----------+--------------------------+
+| Protocol | Port     | Function                 |
++----------+----------+--------------------------+
+| ARP      | N/A      | MAC ↔ IP Resolution      |
+| NAT      | N/A      | IP Translation           |
+| DNS      | 53       | Name ↔ IP Resolution     |
+| SNMP     | 161/162  | Network Monitoring       |
++----------+----------+--------------------------+
+                    </pre>
+                </div>
+            </div>
+
+            <!-- Pro Tips -->
+            <div class="accordion-item">
+                <div class="child-accordion-header">
+                    <h4>Expert Networking Tips</h4>
+                    <span class="arrow">+</span>
+                </div>
+                <div class="child-accordion-content">
+                    <div class="ascii-container">
+                        <pre>
+<span class="box animate">🔧 Subnetting Pro Tip:</span>
+Always reserve first/last addresses → Network & Broadcast
+
+<span class="box animate">🌐 DHCP Best Practice:</span>
+Set lease times ↓ for mobile devices, ↑ for servers
+
+<span class="box animate">🛡️ Security Essential:</span>
+Use DHCP Snooping to prevent rogue servers
+
+<span class="box animate">🔍 Troubleshooting Flow:</span>
+Physical → IP Config → DNS → Firewall
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Text -->
+        <div class="footer-text">
+            <em>Final Wisdom: Master binary/decimal conversion for subnetting, and always document your IP allocations!</em>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+    <script>
+        function toggleAccordion(header, content, arrow) {
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                arrow.textContent = '+';
+            } else {
+                content.style.display = 'block';
+                arrow.textContent = '-';
+            }
+        }
+
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('.arrow');
+                toggleAccordion(header, content, arrow);
+            });
+        });
+
+        document.querySelectorAll('.child-accordion-header').forEach(header => {
+            header.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevents parent accordion from closing
+                const content = header.nextElementSibling;
+                const arrow = header.querySelector('.arrow');
+                toggleAccordion(header, content, arrow);
+            });
+        });
+    </script>
+</body>
+</html>
